@@ -60,8 +60,20 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 //        intent.putExtra(Intent.EXTRA_TEXT,messageInfoBundle);
         intent.putExtra(Intent.EXTRA_TEXT,messageContent);
 
-        // TODO force show app chooser
-        startActivity(intent);
+        Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+        smsIntent.setType("vnd.android-dir/mms-sms");
+        smsIntent.putExtra("address", phoneNumber);
+        smsIntent.putExtra("sms_body", messageContent);
+        startActivity(smsIntent);
+
+        // Force app chooser
+        Intent chooser = Intent.createChooser(smsIntent, "Choose an app to handle your intent");
+
+        // Verify the intent will resolve to at least one activity
+        if (smsIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(chooser);
+        }
+//        startActivity(intent);
 
     }
 
