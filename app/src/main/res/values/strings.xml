@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Messenger</string>
+    <string name="send">Send</string>
+    <string name="charsLeftMsg">Characters count: %d</string>
+    <string name="enter_phone_number">Enter phone number</string>
+</resources>
