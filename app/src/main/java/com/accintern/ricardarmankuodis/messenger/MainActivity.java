@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
     private TextView mCharsLeftTextView;
     private Button mSendMessageButton;
 
+
+    // TODO add ability to choose number from contacts
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,8 +96,11 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         }
         // more checks...
         if(body.length()==0){
-            String s;
             mMessageEditText.setError("Message should have a body!");
+            mMessageEditText.requestFocus();
+            hasErrors=true;
+        }else if(body.trim().length()==0 ){
+            mMessageEditText.setError("Message should contain at least 1 non-space character!");
             mMessageEditText.requestFocus();
             hasErrors=true;
         }
